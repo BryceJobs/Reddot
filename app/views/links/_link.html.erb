@@ -1,0 +1,37 @@
+<div class="panel panel-default">
+    
+      <div class="panel-body"> 
+      
+        <h2> <%= link_to link.title, link_path(link) %></h2>
+        <p class="link_details"><small>submitted <%= time_ago_in_words link.created_at %> ago,
+           by <%= link.user.email %>,
+           <%= pluralize link.comments.count, 'Comment' %></small></p><br>
+        <p class="link_description well"><%= link.description %></p>
+      
+      </div>
+      <div class="panel-footer">
+
+        <div class="btn-group btn-group-sm" >
+          <a href="http://<%= link.url %>" target="_blank" class="btn btn-primary">View Url</a>
+          <%= link_to  like_link_path(link), method: :put, class: "btn btn-success" do %>
+             <span class="glyphicon glyphicon-triangle-top" aria-hidden="true"> </span>
+              like
+             <span class="badge"><%= link.get_likes.size %></span>
+          <% end -%>
+          <%= link_to dislike_link_path(link), method: :put, class: "btn btn-warning" do %>
+           <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"> </span>
+              dislike
+             <span class="badge"><%= link.get_dislikes.size %></span>
+          <% end -%>
+        </div>
+        
+        <% if  current_user.own?(link) %>
+          <div class="pull-right btn-group btn-group-sm">
+            <%= link_to 'Edit', edit_link_path(link), class: "btn btn-info" %>
+            <%= link_to 'Destroy', link, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+          </div>
+        <% end %>
+      
+      </div>
+</div>
+ 

@@ -1,0 +1,46 @@
+// Place all the styles related to the Links controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#main{
+	margin-top: 70px;
+}
+
+#container{
+	margin-top: 30px;
+
+	.panel-body{
+		h2{
+			margin-bottom: 0;
+		}
+
+		.link_details{
+			color: #BABABA;
+			margin-left: 5px;			
+		}
+
+		#comments{
+			p{
+				margin-bottom: 0 !important;
+			}
+		}
+	}
+}
+
+.navbar-ex1-collapse {
+	font-weight: 500;
+	
+	.button{
+		padding: 6px 10px ;	
+		color: green;
+	}
+	
+	#new_link{
+		color: #337ab7 ;	
+		font-weight: 600;
+		&:hover{
+			color: #337ab7;
+		}
+	}
+	
+}

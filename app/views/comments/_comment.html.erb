@@ -1,0 +1,28 @@
+<p><small><%= comment.user.email %></small></p>
+<div class="well"> 
+
+	<p>
+		<%= comment.body %> 
+		<span class="pull-right">
+			<%= link_to "edit ", edit_link_comment_path(comment.link.id, comment.id), class: "btn btn-default btn-xs" if current_user.own?(comment) %>
+
+			<%= link_to "delete", link_comment_path(comment.link.id, comment.id),method: :delete, class: "btn btn-default btn-xs" if current_user.own?(comment) %>
+		</span>
+	</p>
+	
+	<div id="link_comment_edit" class="hidden">
+		<br>
+		<%= simple_form_for([@link, @link.comments.build], class: "form-horizontal") do |f| %>
+		  <%= f.error_notification %>
+
+		  <div class="form-inputs">
+		    	<%= f.input :body %>
+		  </div>
+
+		  <div class="form-actions">
+		    <%= f.button :submit, class: "btn-primary btn" %>
+		  </div>
+		<% end %>
+		<br>
+  </div>
+</div>

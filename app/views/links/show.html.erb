@@ -1,0 +1,32 @@
+<div>
+	<%= link_to  root_path, class: "btn btn-info" do %>
+	<span class="glyphicon glyphicon-arrow-left"></span>
+	All Links
+<% end -%>
+</div> 
+<br>
+
+<div>		
+	<%= render :partial => "links/link", :object => @link %>
+	<br>
+	<h3><%= pluralize @link.comments.count, 'Comment' %></h3>
+	<hr>
+	<div id="comments">
+		<%= render :partial => "comments/comment", :collection => @link.comments if @link.comments.any? %>
+	</div>
+	<br>
+	<h3>New Comment</h3>
+	<hr>
+	<%= simple_form_for([@link, @link.comments.build], class: "form-horizontal") do |f| %>
+	  <%= f.error_notification %>
+
+	  <div class="form-inputs">
+	    	<%= f.input :body %>
+	  </div>
+
+	  <div class="form-actions">
+	    <%= f.button :submit, class: "btn-primary btn" %>
+	  </div>
+	<% end %>
+	<br>
+</div>
